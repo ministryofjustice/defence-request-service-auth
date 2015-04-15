@@ -1,23 +1,7 @@
 require "rails_helper"
 
 RSpec.describe CredentialsSerializer do
-
   describe "#to_json" do
-    subject { CredentialsSerializer.new user: double("User"), application: double("Application") }
-
-    it "calls to_json with options on the serialized response" do
-      serialized_credentials_as_json = double("JsonizedCredentials")
-      serialized_credentials = double("Credentials")
-      opts = {}
-
-      expect(serialized_credentials).to receive(:to_json).with(opts).and_return serialized_credentials_as_json
-      expect(subject).to receive(:serialize).and_return serialized_credentials
-
-      expect(subject.to_json(opts)).to eq(serialized_credentials_as_json)
-    end
-  end
-
-  describe "#serialize" do
     let(:profile) { build_stubbed :profile }
     let(:application) { build_stubbed :doorkeeper_application }
     let(:role) { build_stubbed :role }
@@ -27,7 +11,7 @@ RSpec.describe CredentialsSerializer do
       user = build_stubbed :user, profile: profile
       serializer = CredentialsSerializer.new user: user, application: application
 
-      expect(serializer.serialize).to eq(
+      expect(serializer.to_json).to eq(
         {
           user: {
             email: user.email,
@@ -45,7 +29,7 @@ RSpec.describe CredentialsSerializer do
             uid: user.profile.uid
           },
           roles: user.roles_for(application: application).map(&:name)
-        }
+        }.to_json
       )
     end
 
@@ -53,7 +37,7 @@ RSpec.describe CredentialsSerializer do
       user = build_stubbed :user
       serializer = CredentialsSerializer.new user: user, application: application
 
-      expect(serializer.serialize).to eq(
+      expect(serializer.to_json).to eq(
         {
           user: {
             email: user.email,
@@ -71,10 +55,8 @@ RSpec.describe CredentialsSerializer do
             uid: ""
           },
           roles: []
-        }
+        }.to_json
       )
     end
   end
-
-
 end

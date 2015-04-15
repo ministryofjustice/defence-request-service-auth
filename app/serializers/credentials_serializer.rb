@@ -3,14 +3,6 @@ class CredentialsSerializer
     @user, @application = user, application
   end
 
-  def serialize
-    {
-      user: serialized_user,
-      profile: serialized_profile,
-      roles: serialized_roles,
-    }
-  end
-
   def to_json(opts = {})
     serialize.to_json opts
   end
@@ -18,6 +10,14 @@ class CredentialsSerializer
   private
 
   attr_reader :user, :application
+
+  def serialize
+    {
+      user: serialized_user,
+      profile: serialized_profile,
+      roles: serialized_roles,
+    }
+  end
 
   def serialized_user
     {
