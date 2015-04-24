@@ -38,5 +38,4 @@ class MembershipsController < ApplicationController
       permit(:profile_id).
       merge({ organisation_id: @organisation.id })
   end
-
 end

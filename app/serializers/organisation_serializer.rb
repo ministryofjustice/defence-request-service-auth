@@ -1,5 +1,4 @@
 class OrganisationSerializer < BaseSerializer
-
   def serialize
     {
       uid: object.uid,

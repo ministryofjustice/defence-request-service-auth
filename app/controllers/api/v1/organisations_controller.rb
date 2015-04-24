@@ -1,6 +1,5 @@
 module Api::V1
   class OrganisationsController < ApiController
-
     def index
       if params[:types].present?
         organisations = Organisation.where(organisation_type: params[:types])
@@ -36,6 +35,5 @@ module Api::V1
     def organisation_serializer(organisation)
       OrganisationSerializer.new(organisation)
     end
-
   end
 end
