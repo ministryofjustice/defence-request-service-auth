@@ -1,5 +1,5 @@
 class CredentialsSerializer
-  def initialize(user: , application:)
+  def initialize(user, application)
     @user, @application = user, application
   end
 

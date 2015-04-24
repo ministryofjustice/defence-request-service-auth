@@ -9,8 +9,8 @@ RSpec.shared_context "logged in API User" do
 
   def api_request_headers
     {
-      "Authorization": "Bearer #{token.token}",
-      "Content-Type": "application/json"
+      "Authorization" => "Bearer #{token.token}",
+      "Content-Type" => "application/json"
     }
   end
 end
@@ -20,8 +20,8 @@ RSpec.shared_examples "a protected endpoint" do |url|
 
     get url, nil,
       {
-        "Authorization": "Bearer foo",
-        "Content-Type": "application/json"
+        "Authorization" => "Bearer foo",
+        "Content-Type" => "application/json"
       }
 
     expect(response.status).to eq(401)

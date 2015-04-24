@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   delegate :name, to: :profile
 
-  def roles_for(application: )
+  def roles_for(application)
     permissions.for_application(application).map(&:role)
   end
 end
