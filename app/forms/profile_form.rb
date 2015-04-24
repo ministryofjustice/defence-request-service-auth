@@ -60,4 +60,3 @@ class ProfileForm
     associated_user.present? && associated_user != "0"
   end
 end
-
