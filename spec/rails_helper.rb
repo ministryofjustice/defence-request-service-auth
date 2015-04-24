@@ -9,7 +9,7 @@ require "capybara/poltergeist"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |file| require file }
 
 
-WebMock.disable_net_connect!(allow_localhost: true, allow: ['codeclimate.com'])
+WebMock.disable_net_connect!(allow_localhost: true, allow: ["codeclimate.com"])
 
 RSpec.configure do |config|
   config.include HelperMethods
@@ -26,6 +26,6 @@ Capybara.javascript_driver = :poltergeist
 
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, {
-                                         phantomjs_logger: File.open("#{Rails.root}/log/test_phantomjs.log", "a"),
+                                         phantomjs_logger: File.open("#{Rails.root}/log/test_phantomjs.log", "a")
                                        })
 end

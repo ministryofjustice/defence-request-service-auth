@@ -1,5 +1,4 @@
 class OrganisationsSerializer < CollectionSerializer
-
   def serialize
     collection.map do |o|
       OrganisationSerializer.new(o).serialize

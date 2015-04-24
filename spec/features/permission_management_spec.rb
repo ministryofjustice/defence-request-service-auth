@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'Users managing permissions' do
+RSpec.describe "Users managing permissions" do
   let!(:role) { create(:role) }
   let!(:application) { create(:doorkeeper_application) }
   let!(:organisation) { create(:organisation, :with_profiles_and_users, profile_count: 3) }
@@ -26,7 +26,7 @@ RSpec.describe 'Users managing permissions' do
 
     click_button "Create Permission"
 
-    expect(page).to have_content 'Permission successfully created'
+    expect(page).to have_content "Permission successfully created"
     expect(current_path).to eq organisation_path(organisation)
 
     within "##{user.profile.id}-row" do
@@ -70,7 +70,7 @@ RSpec.describe 'Users managing permissions' do
 
 end
 
-def permission_cannot_be_destroyed_for_some_reason permission
+def permission_cannot_be_destroyed_for_some_reason(permission)
   expect(Permission).to receive(:find).with(permission.id.to_s) { permission }
   expect(permission).to receive(:destroy) { false }
 end

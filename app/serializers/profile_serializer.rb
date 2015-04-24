@@ -1,5 +1,4 @@
 class ProfileSerializer < BaseSerializer
-
   def serialize
     {
       uid: object.uid,

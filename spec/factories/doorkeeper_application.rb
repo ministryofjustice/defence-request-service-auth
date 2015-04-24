@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :doorkeeper_application, class: "Doorkeeper::Application" do |application|
+  factory :doorkeeper_application, class: "Doorkeeper::Application" do
     sequence(:name) {|i| "Doorkeeper Application ##{i}" }
     sequence(:uid) {|i| "#{i}" }
     sequence(:secret) {|i| "#{i}" }

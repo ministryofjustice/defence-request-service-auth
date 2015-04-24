@@ -1,6 +1,5 @@
 module Api::V1
   class ProfilesController < ApiController
-
     def index
       if params[:uids].present?
         profiles = Profile.where(uid: params[:uids])
@@ -49,6 +48,5 @@ module Api::V1
     def profile_serializer(profile)
       ProfileSerializer.new(profile)
     end
-
   end
 end

@@ -34,9 +34,8 @@ class MembershipsController < ApplicationController
   end
 
   def membership_params
-    params.require(:membership).
-      permit(:profile_id).
-      merge({ organisation_id: @organisation.id })
+    params.require(:membership)
+      .permit(:profile_id)
+      .merge({ organisation_id: @organisation.id })
   end
-
 end

@@ -13,11 +13,11 @@ FactoryGirl.define do
         number_of_applications 2
       end
 
-      after(:create) do |user, evaluator|
+      after(:create) do |created_user, evaluator|
         (1..evaluator.number_of_applications).each do
           application = create :oauth_application
-          create :permission, application: application, user: user
-          create :access_token, application: application, resource_owner_id: user.id
+          create :permission, application: application, user: created_user
+          create :access_token, application: application, resource_owner_id: created_user.id
         end
       end
     end

@@ -25,7 +25,7 @@ Permission.where(role: role,
   Permission.where(role: cco_role,
                    user: User.where(email: "cco#{i}@example.com").first,
                    application: service_app,
-                   organisation: Organisation.where(slug: "capita").first,
+                   organisation: Organisation.where(slug: "capita").first
                   ).first_or_create
 
   Permission.where(role: solicitor_role,

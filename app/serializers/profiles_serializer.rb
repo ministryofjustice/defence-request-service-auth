@@ -1,5 +1,4 @@
 class ProfilesSerializer < CollectionSerializer
-
   def serialize
     collection.map do |p|
       ProfileSerializer.new(p).serialize
