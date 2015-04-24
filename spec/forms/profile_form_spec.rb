@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe ProfileForm do
-  let (:profile) { Profile.new }
+  let(:profile) { Profile.new }
   subject { ProfileForm.new(profile) }
 
   describe "submit" do
-    let (:profile_params) { attributes_for :profile,
+    let(:profile_params) { attributes_for :profile,
                                            email: "dave@example.com" }
 
     context "profile" do
@@ -64,11 +64,15 @@ RSpec.describe ProfileForm do
     end
 
     context "profile and user" do
-      let (:profile_and_user_params) { profile_params.merge({ associated_user: "1",
-                                                              user_attributes:
-                                                                { password: "password",
-                                                                  password_confirmation: "password" }
-                                                               }) }
+      let(:profile_and_user_params) do
+        profile_params.merge({
+          associated_user: "1",
+          user_attributes: {
+            password: "password",
+            password_confirmation: "password"
+          }
+        })
+      end
 
       context "with valid params" do
         it "returns true, and has no errors" do
@@ -130,11 +134,15 @@ RSpec.describe ProfileForm do
           # if we have a valid user, but invalid profile,
           # that the rollback occurs correctly.
           #
-          let (:profile_and_user_params) { profile_params.merge({ associated_user: "1",
-                                                                  user_attributes:
-                                                                  { password: "password",
-                                                                    password_confirmation: "password" }
-                                                                }) }
+          let(:profile_and_user_params) do
+            profile_params.merge({
+              associated_user: "1",
+              user_attributes: {
+                password: "password",
+                password_confirmation: "password"
+              }
+            })
+          end
           it "does not create either model" do
             allow_any_instance_of(User).to receive(:save).and_return(false)
 

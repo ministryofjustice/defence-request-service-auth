@@ -14,7 +14,7 @@ RSpec.describe CollectionSerializer do
       end
     end
 
-    let (:profiles) { create_list :profile, 2 }
+    let(:profiles) { create_list :profile, 2 }
 
     subject { TestCollectionSerializer.new profiles }
 

@@ -13,9 +13,7 @@ RSpec.describe BaseSerializer do
     subject { TestSerializer.new profile }
 
     it "creates a root key and calls serialize on the extended serializer" do
-      expect(subject.as_json).to eq ({
-        profile: "test #serialize response"
-      })
+      expect(subject.as_json).to eq({ profile: "test #serialize response" })
     end
   end
 

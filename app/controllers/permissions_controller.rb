@@ -44,6 +44,6 @@ class PermissionsController < ApplicationController
   end
 
   def redirect_to_supplied_path_or(other_path, *args)
-    redirect_to (params[:redirect_path] || other_path), *args
+    redirect_to((params[:redirect_path] || other_path), *args)
   end
 end
