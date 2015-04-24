@@ -42,11 +42,11 @@ RSpec.describe Organisation do
     specify { expect(subject).to have_many(:permissions) }
     specify { expect(subject).to have_many(:profiles).through(:memberships) }
 
-    specify { expect(subject).to have_many(:sub_organisations).
-              class_name("Organisation").
-              with_foreign_key("parent_organisation_id") }
-    specify { expect(subject).to belong_to(:parent_organisation).
-              class_name("Organisation") }
+    specify { expect(subject).to have_many(:sub_organisations)
+              .class_name("Organisation")
+              .with_foreign_key("parent_organisation_id") }
+    specify { expect(subject).to belong_to(:parent_organisation)
+              .class_name("Organisation") }
   end
 
   describe "scopes" do

@@ -11,8 +11,8 @@ RSpec.describe Membership do
     specify { expect(subject).to validate_presence_of(:organisation) }
 
     specify do
-      expect(subject).to validate_uniqueness_of(:profile_id).
-        scoped_to(:organisation_id)
+      expect(subject).to validate_uniqueness_of(:profile_id)
+        .scoped_to(:organisation_id)
     end
   end
 end

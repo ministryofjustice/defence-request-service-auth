@@ -16,8 +16,8 @@ RSpec.describe Permission do
     specify { expect(subject).to validate_presence_of(:role) }
 
     specify do
-      expect(subject).to validate_uniqueness_of(:user_id).
-        scoped_to(:role_id, :application_id, :organisation_id)
+      expect(subject).to validate_uniqueness_of(:user_id)
+        .scoped_to(:role_id, :application_id, :organisation_id)
     end
   end
 
