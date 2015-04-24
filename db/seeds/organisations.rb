@@ -22,16 +22,16 @@ law_firm = Organisation.where(slug: "law-firm").first_or_create(
 (1..5).each do |i|
   Membership.create(
     organisation: custody_suite,
-    profile: Profile.where(email: "cso#{i}@example.com").first,
+    profile: Profile.where(email: "cso#{i}@example.com").first
   )
 
   Membership.create(
     organisation: call_centre,
-    profile: Profile.where(email: "cco#{i}@example.com").first,
+    profile: Profile.where(email: "cco#{i}@example.com").first
   )
 
   Membership.create(
     organisation: law_firm,
-    profile: Profile.where(email: "solicitor#{i}@example.com").first,
+    profile: Profile.where(email: "solicitor#{i}@example.com").first
   )
 end

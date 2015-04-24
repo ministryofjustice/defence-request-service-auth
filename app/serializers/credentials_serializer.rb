@@ -11,7 +11,7 @@ class CredentialsSerializer
     {
       user: serialized_user,
       profile: serialized_profile,
-      roles: serialized_roles,
+      roles: serialized_roles
     }
   end
 
@@ -21,7 +21,7 @@ class CredentialsSerializer
 
   def serialized_user
     {
-      email: user.email,
+      email: user.email
     }
   end
 
@@ -33,10 +33,10 @@ class CredentialsSerializer
       mobile: profile.mobile,
       address: {
         full_address: profile.address,
-        postcode: profile.postcode,
+        postcode: profile.postcode
       },
       organisation_uids: profile.organisations.pluck(:uid),
-      uid: profile.uid,
+      uid: profile.uid
     }
   end
 

@@ -16,7 +16,7 @@ RSpec.describe "GET /api/v1/profiles/me" do
       expect(response_json).to eq(
         {
           "user" => {
-            "email" => user.email,
+            "email" => user.email
           },
           "profile" => {
             "email" => user.profile.email,
@@ -25,7 +25,7 @@ RSpec.describe "GET /api/v1/profiles/me" do
             "mobile" => user.profile.mobile,
             "address" => {
               "full_address" => user.profile.address,
-              "postcode" => user.profile.postcode,
+              "postcode" => user.profile.postcode
             },
             "organisation_uids" => user.profile.organisations.map(&:uid),
             "uid" => user.profile.uid

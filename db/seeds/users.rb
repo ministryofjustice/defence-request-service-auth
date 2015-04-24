@@ -11,7 +11,7 @@ Profile.where(user: user2).first_or_create(
   address: "123 Fake Street",
   postcode: "POSTCODE",
   email: "jeff@example.com",
-  tel: "09011105010",
+  tel: "09011105010"
 )
 
 # Create 5 CSOs, CCOs, and solicitors

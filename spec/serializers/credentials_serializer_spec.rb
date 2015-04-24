@@ -27,7 +27,7 @@ RSpec.describe CredentialsSerializer do
       expect(serializer.serialize).to eq(
         {
           user: {
-            email: user.email,
+            email: user.email
           },
           profile: {
             email: user.profile.email,
@@ -36,7 +36,7 @@ RSpec.describe CredentialsSerializer do
             mobile: user.profile.mobile,
             address: {
               full_address: user.profile.address,
-              postcode: user.profile.postcode,
+              postcode: user.profile.postcode
             },
             organisation_uids: user.profile.organisations.map(&:uid),
             uid: user.profile.uid
@@ -53,7 +53,7 @@ RSpec.describe CredentialsSerializer do
       expect(serializer.serialize).to eq(
         {
           user: {
-            email: user.email,
+            email: user.email
           },
           profile: {
             email: "",
@@ -62,7 +62,7 @@ RSpec.describe CredentialsSerializer do
             mobile: "",
             address: {
               full_address: "",
-              postcode: "",
+              postcode: ""
             },
             organisation_uids: [],
             uid: ""
