@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :oauth_application, class: Doorkeeper::Application do |application|
+  factory :oauth_application, class: Doorkeeper::Application do
     sequence(:name) { |n| Faker::App.translate("faker.app.name")[n] }
     uid             { ("a".."z").to_a.shuffle.join }
     secret          { ("a".."z").to_a.shuffle.join }

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :profile do |profile|
+  factory :profile do
     name                        { Faker::Name.name }
     address                     { Faker::Address.street_address }
     postcode                    "POSTCODE"

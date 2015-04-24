@@ -16,7 +16,7 @@ listen(File.join(APP_PATH, "tmp", "sockets", "unicorn.sock"), backlog: 64) unles
 timeout 15
 preload_app true
 
-before_fork do |server, worker|
+before_fork do
   Signal.trap "TERM" do
     puts "Unicorn master intercepting TERM and sending myself QUIT instead"
     Process.kill "QUIT", Process.pid
@@ -26,7 +26,7 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 end
 
-after_fork do |server, worker|
+after_fork do
   Signal.trap "TERM" do
     puts "Unicorn worker intercepting TERM and doing nothing. Wait for master to send QUIT"
   end
