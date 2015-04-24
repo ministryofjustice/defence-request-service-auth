@@ -1,0 +1,46 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'config/boot.rb'
+    - 'config/initializers/doorkeeper.rb'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+
+Metrics/LineLength:
+  Max: 160
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/BlockEndNewline:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Style/MultilineBlockLayout:
+  Enabled: false
+
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
