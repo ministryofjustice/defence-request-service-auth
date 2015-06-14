@@ -11,9 +11,9 @@
   <% @profiles.each do |profile| %>
     <%= content_tag_for(:tr, profile) do %>
       <td><%= link_to profile.name, profile_path(profile) %></td>
-      <td><%= link_to t('edit'), edit_profile_path(profile) %></td>
-      <td><%= link_to t('delete'), profile, method: :delete, data: { confirm: t('are_you_sure') } %></td>
-      <td><%= link_to(t('password'), edit_user_path(profile.user.id)) if profile.user %></td>
+      <td><%= link_to t('edit'), edit_profile_path(profile) if policy(profile).edit? %></td>
+      <td><%= link_to t('delete'), profile, method: :delete, data: { confirm: t('are_you_sure') } if policy(profile).destroy? %></td>
+      <td><%= link_to(t('password'), edit_user_path(profile.user.id)) if policy(profile).edit? && profile.user %></td>
     <% end %>
   <% end %>
   </tbody>
@@ -21,4 +21,6 @@
 
 <br>
 
-<%= link_to t('new_profile'), new_profile_path %>
+<%- if policy(Profile.new).new? %>
+  <%= link_to t('new_profile'), new_profile_path %>
+<%- end %>

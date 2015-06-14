@@ -8,7 +8,7 @@ RSpec.describe "GET /api/v1/profiles/me" do
 
     it "returns a 200 response with the user credentials" do
       organisation = create :organisation
-      create :profile, user: user, organisations: [organisation]
+      user.profile.organisations << organisation
 
       get "/api/v1/profiles/me", nil, api_request_headers
 

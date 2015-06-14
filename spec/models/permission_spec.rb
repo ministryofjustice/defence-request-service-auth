@@ -11,7 +11,6 @@ RSpec.describe Permission do
 
   describe "validations" do
     specify { expect(subject).to validate_presence_of(:user) }
-    specify { expect(subject).to validate_presence_of(:application) }
     specify { expect(subject).to validate_presence_of(:role) }
     specify { expect(subject).to validate_presence_of(:role) }
 

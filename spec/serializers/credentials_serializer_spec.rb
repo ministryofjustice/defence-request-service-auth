@@ -45,31 +45,5 @@ RSpec.describe CredentialsSerializer do
         }
       )
     end
-
-    it "returns empty profile keys if the user has no profile" do
-      user = build_stubbed :user
-      serializer = CredentialsSerializer.new user: user, application: application
-
-      expect(serializer.serialize).to eq(
-        {
-          user: {
-            email: user.email,
-          },
-          profile: {
-            email: "",
-            name: "",
-            telephone: "",
-            mobile: "",
-            address: {
-              full_address: "",
-              postcode: "",
-            },
-            organisation_uids: [],
-            uid: ""
-          },
-          roles: []
-        }
-      )
-    end
   end
 end

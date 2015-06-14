@@ -3,10 +3,8 @@ FactoryGirl.define do
     sequence(:email)            {|n| "barry#{n}@example.com" }
     user.password               Faker::Internet.password(8)
     user.password_confirmation  { password }
+    association :profile # Users always have a profile, but profiles do not always have a user
 
-    trait :with_profile do
-      association :profile
-    end
 
     trait :logged_in_to_applications do
       transient do

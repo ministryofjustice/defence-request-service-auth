@@ -1,29 +1,51 @@
 class ProfilesController < ApplicationController
   before_action :find_profile, only: [:show, :destroy]
-  before_action :new_profile_form, only: [:new, :create]
-  before_action :edit_profile_form, only: [:edit, :update]
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
 
   def index
-    @profiles = Profile.all
+    @profiles = policy_scope(Profile)
+  end
+
+  def show
+    authorize profile_form
+  end
+
+  def new
+    authorize profile_form
+  end
+
+  def edit
+    authorize profile_form
   end
 
   def create
-    if new_profile_form.validate_and_save(profile_params)
-      redirect_to profile_path(new_profile_form), notice: flash_message(:create, Profile)
+    profile_form.create(profile_params)
+
+    authorize profile_form
+
+    if profile_form.save
+      redirect_to profile_path(profile_form), notice: flash_message(:create, Profile)
     else
       render :new
     end
   end
 
   def update
-    if edit_profile_form.validate_and_save(profile_params)
-      redirect_to(profile_path(edit_profile_form), notice: flash_message(:update, Profile))
+    profile_form.update(profile_params)
+
+    authorize profile_form
+
+    if profile_form.save
+      redirect_to(profile_path(profile_form), notice: flash_message(:update, Profile))
     else
       render :edit
     end
   end
 
   def destroy
+    authorize find_profile
+
     if find_profile.destroy
       redirect_to profiles_path, notice: flash_message(:destroy, Profile)
     else
@@ -34,23 +56,23 @@ class ProfilesController < ApplicationController
   private
 
   def find_profile
-    @profile = Profile.find params[:id]
+    @profile ||= load_profile
+  end
+
+  def load_profile
+    if params[:id]
+      Profile.find params[:id]
+    else
+      Profile.new organisations: [current_user.organisation]
+    end
   end
 
   def find_profile_user
     find_profile.try(:user) || User.new
   end
 
-  def new_profile_form
-    @profile_form ||= ProfileForm.new profile: Profile.new, user: User.new
-  end
-
-  def edit_profile_form
-    @profile_form ||= ProfileForm.new profile: find_profile, user: find_profile_user, has_associated_user: has_associated_user
-  end
-
-  def has_associated_user
-    find_profile.try(:user).present?
+  def profile_form
+    @profile_form ||= ProfileForm.new profile: find_profile, user: find_profile_user
   end
 
   def profile_params
@@ -61,6 +83,7 @@ class ProfilesController < ApplicationController
                                     :postcode,
                                     :email,
                                     :has_associated_user,
-                                    :password, :password_confirmation)
+                                    :password,
+                                    :password_confirmation)
   end
 end

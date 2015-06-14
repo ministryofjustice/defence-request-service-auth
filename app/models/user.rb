@@ -6,7 +6,13 @@ class User < ActiveRecord::Base
 
   delegate :name, to: :profile
 
+  validates :profile, presence: true
+
   def roles_for(application: )
     permissions.for_application(application).map(&:role)
+  end
+
+  def organisation
+    profile.organisation
   end
 end

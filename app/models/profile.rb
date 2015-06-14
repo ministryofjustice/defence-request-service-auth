@@ -17,4 +17,8 @@ class Profile < ActiveRecord::Base
   def associated_user=(string_value)
     @associated_user = (string_value == "1")
   end
+
+  def organisation
+    organisations.first
+  end
 end

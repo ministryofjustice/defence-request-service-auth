@@ -19,11 +19,15 @@ class ProfileForm < Reform::Form
   validates :email, uniqueness: true, email: { strict_mode: true }
 
   validates :password, presence: true,
-    confirmation: true, length: { minimum: 8 }, if: :has_associated_user?
+    confirmation: true, length: { minimum: 8 }, if: :validate_password?
 
+  def id
+    model[:profile].id
+  end
 
-  attr_accessor :has_associated_user
-  alias :has_associated_user? :has_associated_user
+  def organisation
+    model[:profile].organisation
+  end
 
   # Also save the email on the user model to keep devise happy
   # TODO: don't store the email in 2 places
@@ -32,14 +36,23 @@ class ProfileForm < Reform::Form
     model[:user].email = val
   end
 
+  def validate_password?
+    has_associated_user? && model[:user].new_record?
+  end
+
+  attr_accessor :has_associated_user
+  alias :has_associated_user? :has_associated_user
+
   def has_associated_user=(val)
     @has_associated_user = val == "1"
   end
 
-  def validate_and_save(params)
+  def validate(params)
     self.has_associated_user = params.delete(:has_associated_user)
-    validate(params) && save
+    super(params)
   end
+  alias :create :validate
+  alias :update :validate
 
   def save
     return false unless valid?
