@@ -1,0 +1,5 @@
+authentication:
+  site_url: <%= ENV.fetch("DS_AUTH_SITE_URL") %>
+  redirect_uri: <%= ENV.fetch("DS_AUTH_REDIRECT_URI") %>
+  application_id: <%= ENV.fetch("DS_AUTH_APPLICATION_ID") %>
+  application_secret: <%= ENV.fetch("DS_AUTH_APPLICATION_SECRET") %>
