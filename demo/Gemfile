@@ -1,0 +1,9 @@
+source "https://rubygems.org"
+
+ruby "2.2.2"
+
+gem "rails", "4.2.0"
+
+gem "dotenv-rails", "~> 2.0.0", require: "dotenv/rails-now"
+gem "rails_config"
+gem "ds-auth-omniauth", github: "ministryofjustice/ds-auth-omniauth", tag: "v0.10.0"
